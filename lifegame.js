@@ -1,7 +1,7 @@
 
 $(() => {
 
-    //セル描画関数
+    //セル描画関数 r:row,c:col
     function drawTable(r, c) {
 
         $("#tbody").empty();
@@ -25,8 +25,8 @@ $(() => {
 
     //画面更新
     //FireFoxだと画面を更新してもセルの数はそのままのようだ
-    let r = $("#rows").val();
-    let c = $("#cols").val();
+    let r = Number($("#rows").val());
+    let c = Number($("#cols").val());
 
     drawTable(r, c);
     let gen = new Generation(r, c);
@@ -46,7 +46,7 @@ $(() => {
         //1~99の整数のみ受け付ける
         if (Number.isInteger(r) && Number.isInteger(c) && 0 < r && r < 100 && 0 < c && c < 100) {
 
-            $("#container").css("width", Math.max(c * 15.3, 950)); //コンテナのサイズ調整
+            $("#container").css("width", Math.max(c * 15.3, 750)); //コンテナのサイズ調整
 
             drawTable(r, c);
             gen = new Generation(r, c);
@@ -59,7 +59,7 @@ $(() => {
 
 
     //セルをクリックする
-    $("td").click(on_off);
+    $("td").on("click", on_off);
 
     function on_off() {
         let x = Number($(this).data("row"));
@@ -86,24 +86,13 @@ $(() => {
         }
     }
 
-
-    /*塗りつぶし操作(不具合)
-    $("td").on("mousedown",()=>{
-        $("td").on("mouseenter",on_off);
-
-        $("body").on("mouseup",()=>{
-            $("td").off("mouseenter");
-        });
-    });*/
-
     /*塗りつぶし操作*/
     $("td").on("mousedown", (ev) => {
         console.log(ev);
         $("td").on("mouseenter", on_off);
 
     });
-    //bodyへのmouseupイベントは外に出し、登録を1回のみにしました。
-    //どんな場合でもbody内でmouseupしたら、tdのmouseenterを消しますが、それで問題ないはずです。
+
     $("body").on("mouseup", (ev) => {
         console.log(ev)
         $("td").off("mouseenter");
@@ -111,14 +100,12 @@ $(() => {
     //dragstartイベント登録
     $("td").on("dragstart", (ev) => {
         console.log(ev);
-        ev.stopImmediatePropagation();    //td要素に対する、他のあらゆるdragstartイベントへの伝播を止めます。
-        ev.preventDefault();    //td要素の既定dragstart動作を止めます。
+        ev.stopImmediatePropagation();    //td要素に対する、他のあらゆるdragstartイベントへの伝播を止める。
+        ev.preventDefault();    //td要素の既定dragstart動作を止める。
     });
 
 
     //+10ボタンおよび+50ボタン
-    //無名関数を使って記述するとなぜかthisに要素が入らなくてうまくいかない。
-
     $(".plus10or50").on("click", callback1050);
 
     function callback1050() {
@@ -134,14 +121,12 @@ $(() => {
     };
 
 
-
     //次の世代>ボタン
     $("#next").on("click", () => {
         gen.updateGen();
         $("#n_th").text(`第${gen.n_th}世代`);
         draw();
     });
-
 
 
     let timer; //setIntervalを停止する用
@@ -160,7 +145,7 @@ $(() => {
             gen.updateGen();
 
             //もう変わらない場合は停止させる。
-            if (gen.invariant == true) {
+            if (gen.invariant == Generation.YES) {
 
                 clearInterval(timer)
 
@@ -178,7 +163,6 @@ $(() => {
     });
 
 
-
     //停止ボタン
     $("#stop").on("click", () => {
         clearInterval(timer);
@@ -188,7 +172,5 @@ $(() => {
 
         $("td").on("click", on_off);
     })
-    //セルやボタンのクリックについて、フラグを使うとは？
-
 });
 
