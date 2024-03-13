@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Game</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./jquery.js"></script>
+    <script src="./gen.js"></script>
+    <script src="./lifegame2.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+
+        <header>
+            <div id="scale_input">
+                <p>横幅: <input id="cols" type="number" form="form" min="1" max="99" value="10" required>マス</p>
+                <p>縦幅: <input id="rows" type="number" form="form" min="1" max="99" value="10" required>マス</p>
+            </div>
+
+            <div id="select_etc_cont">
+
+                <div>速度:
+                    <select id="select">
+                        <option value="250">速い</option>
+                        <option value="500" selected>普通</option>
+                        <option value="1000">遅い</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="plus10or50" value="10" title="ランダムで10回セルをオンオフします">+10</button>
+                    <button class="plus10or50" value="50" title="ランダムで50回セルをオンオフします">+50</button>
+                </div>
+
+            </div>
+
+            <form id="form"><input id="submit" type="submit" value="サイズを反映"></form>
+
+            <button id="start">ライフゲーム開始</button>
+
+            <button id="stop" disabled>停止</button>
+
+            <button id="next">次の世代&gt;</button>
+
+        </header>
+
+        <p id="n_th">第1世代</p>
+
+        <table id="table">
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>

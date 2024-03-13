@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+* {
+    margin: 0px;
+}
+
+#container {
+    width: 950px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+header {
+    display: flex;
+    width: 950px;
+    height: 70px;
+}
+
+#scale_input {
+    flex-basis: 20%;
+    margin-top: 9px;
+}
+
+#scale_input p {
+    margin: 1px;
+    text-align: center;
+}
+
+#scale_input input {
+    width: 40px;
+}
+
+
+
+#select_etc_cont {
+    flex-basis: 15%;
+    margin-top: 9px;
+}
+
+#select {
+    height: 25px;
+    width: 50px;
+}
+
+
+/*４つのボタン*/
+
+#submit {
+    width: 120px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+#form {
+    flex-basis: 15%
+}
+
+
+header button {
+    margin: 10px;
+    padding: 5px;
+}
+
+#start {
+    flex-basis: 20%;
+}
+
+#stop {
+    flex-basis: 9%;
+}
+
+#next {
+    flex-basis: 12%;
+}
+
+
+/*セル関係*/
+
+#n_th {
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+#table {
+    border-collapse: collapse;
+    margin: 10px;
+}
+
+td {
+    border: 1px solid black;
+    height: 12px;
+    width: 12px;
+}
+
+/*「生」状態のレイアウト*/
+td[class="on"] {
+    background-color: black;
+    border-color: white;
+}
