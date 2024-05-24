@@ -1,65 +1,102 @@
 <!DOCTYPE html>
 <html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Life Game</title>
+        <link rel="stylesheet" href="./styles.css" />
+        <script src="./jquery.js"></script>
+        <script src="./gen.js"></script>
+        <script src="./lifegame.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Game</title>
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./jquery.js"></script>
-    <script src="./gen.js"></script>
-    <script src="./lifegame.js"></script>
+    <body>
+        <div id="container">
+            <h1>Life Game</h1>
 
-</head>
-
-<body>
-    <div id="container">
-        <h1>Life Game</h1>
-
-        <header>
-
-            <div id="scale_input">
-                <p>横幅: <input id="cols" type="number" form="form" min="1" max="99" value="10" required>マス</p>
-                <p>縦幅: <input id="rows" type="number" form="form" min="1" max="99" value="10" required>マス</p>
-            </div>
-
-            <div id="select_etc_cont">
-
-                <div>速度:
-                    <select id="select">
-                        <option value="250">速い</option>
-                        <option value="500" selected>普通</option>
-                        <option value="1000">遅い</option>
-                    </select>
+            <header>
+                <div id="scale_input">
+                    <p>
+                        横幅:
+                        <input
+                            id="cols"
+                            type="number"
+                            form="form"
+                            min="1"
+                            max="99"
+                            value="10"
+                            required
+                        />マス
+                    </p>
+                    <p>
+                        縦幅:
+                        <input
+                            id="rows"
+                            type="number"
+                            form="form"
+                            min="1"
+                            max="99"
+                            value="10"
+                            required
+                        />マス
+                    </p>
                 </div>
 
-                <div>
-                    <button class="plus10or50" value="10" title="ランダムで10回セルをオンオフします">+10</button>
-                    <button class="plus10or50" value="50" title="ランダムで50回セルをオンオフします">+50</button>
+                <div id="select_etc_cont">
+                    <div>
+                        速度:
+                        <select id="select">
+                            <option value="250">速い</option>
+                            <option value="500" selected>普通</option>
+                            <option value="1000">遅い</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button
+                            class="plus10or50"
+                            value="10"
+                            title="ランダムで10回セルをオンオフします"
+                        >
+                            +10
+                        </button>
+                        <button
+                            class="plus10or50"
+                            value="50"
+                            title="ランダムで50回セルをオンオフします"
+                        >
+                            +50
+                        </button>
+                    </div>
                 </div>
 
-            </div>
+                <form id="form">
+                    <button id="submit">サイズを反映<br />(リセット)</button>
+                </form>
 
-            <form id="form"><button id="submit">サイズを反映</button></form>
+                <button id="start">ゲーム開始</button>
 
-            <button id="start">ライフゲーム開始</button>
+                <button id="stop" disabled>停止</button>
 
-            <button id="stop" disabled>停止</button>
+                <button id="next">次世代&gt;</button>
+            </header>
 
-            <button id="next">次世代&gt;</button>
+            <main>
+                <p id="n_th">第1世代</p>
 
-        </header>
-
-        <main>
-            <p id="n_th">第1世代</p>
-
-            <table id="table">
-                <tbody id="tbody">
-
-                </tbody>
-            </table>
-        </main>
-    </div>
-</body>
-
+                <table id="table">
+                    <tbody id="tbody"></tbody>
+                </table>
+                <details>
+                    <summary>ルール・操作</summary>
+                    <p class="small">
+                        黒のマスは次の世代では、その周囲8マスのうち2～3マスが黒であれば引き続き黒となり、それ以外では白となります。<br />
+                        白のマスは次の世代では、その周囲8マスのうち2マスが黒であれば黒となり、それ以外では白のままとなります。<br />
+                        マスをクリックするとマスの白黒が入れ替わります。<br />
+                        マウスをフィールド上でドラッグすると軌道上のマスの状態をまとめて変えられます。
+                    </p>
+                </details>
+            </main>
+        </div>
+    </body>
 </html>
